@@ -54,7 +54,7 @@
     <!-- The main container for the map and its overlays -->
     <div id="map-container">
         <!-- Using relative path. Assumes an 'images' subfolder. -->
-        <img id="base-map" src="images/BlankMap.png" alt="Base Map of The Villages">
+        <img id="base-map" src="images/blankmap.png" alt="Base Map of The Villages">
         <!-- The interactive sections will be dynamically added here by JavaScript -->
     </div>
 
@@ -68,12 +68,12 @@
             // Example: 'images/HistoricArea.png' will NOT work if the file is named 'images/historicarea.png'.
             // Please double-check every single filename.
             const mapSections = [
-                { id: 'historic', src: 'images/HistoricArea.png', name: 'Historic Area', url: 'https://www.thevillages.com/lifestyle/historic-area' },
-                { id: 'north-of-466', src: 'images/Northof466.png', name: 'North of 466', url: 'https://www.thevillages.com/lifestyle/north-of-466' },
-                { id: 'between-the-6s', src: 'images/Betweenthe6s.png', name: 'Between the 6s', url: 'https://www.thevillages.com/lifestyle/between-the-6s' },
-                { id: 'south-of-466a', src: 'images/Southof466A.png', name: 'South of 466A', url: 'https://www.thevillages.com/lifestyle/south-of-466a' },
-                { id: 'eastport', src: 'images/Eastport.png', name: 'Eastport', url: 'https://www.thevillages.com/lifestyle/eastport' },
-                { id: 'south-of-sr44', src: 'images/SouthofSR44.png', name: 'South of SR 44', url: 'https://www.thevillages.com/lifestyle/south-of-sr44' }
+                { id: 'historic', src: 'images/historicarea.png', name: 'Historic Area', url: 'https://www.thevillages.com/lifestyle/historic-area' },
+                { id: 'north-of-466', src: 'images/northof466.png', name: 'North of 466', url: 'https://www.thevillages.com/lifestyle/north-of-466' },
+                { id: 'between-the-6s', src: 'images/betweenthe6s.png', name: 'Between the 6s', url: 'https://www.thevillages.com/lifestyle/between-the-6s' },
+                { id: 'south-of-466a', src: 'images/southof466a.png', name: 'South of 466A', url: 'https://www.thevillages.com/lifestyle/south-of-466a' },
+                { id: 'eastport', src: 'images/eastport.png', name: 'Eastport', url: 'https://www.thevillages.com/lifestyle/eastport' },
+                { id: 'south-of-sr44', src: 'images/southofsr44.png', name: 'South of SR 44', url: 'https://www.thevillages.com/lifestyle/south-of-sr44' }
             ];
 
             const mapContainer = document.getElementById('map-container');
