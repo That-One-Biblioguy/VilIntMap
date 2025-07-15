@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Interactive Map of The Villages</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+        }
+        /* Container for the map to establish a positioning context */
+        #map-container {
+            position: relative;
+            width: 981px; /* Width of the base map image */
+            height: 752px; /* Height of the base map image */
+            margin: auto;
+            border-radius: 0.5rem;
+            overflow: hidden;
+            box-shadow: 0 10px 25px rgba(0,0,0,0.1);
+            background-color: #e5e7eb; /* A light gray background for the map area */
+        }
+        /* Base map image */
+        #base-map {
+            display: block;
+            width: 100%;
+            height: 100%;
+        }
+        /* Styling for the overlay sections */
+        .map-section {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            opacity: 0; /* Initially transparent */
+            transition: opacity 0.3s ease-in-out;
+            cursor: pointer;
+        }
+        /* On hover, the section becomes visible */
+        .map-section:hover {
+            opacity: 0.7; /* Semi-transparent red highlight */
+        }
+    </style>
+</head>
+<body class="bg-gray-100 flex flex-col items-center justify-center min-h-screen p-4">
+
+    <div class="text-center mb-8">
+        <h1 class="text-4xl font-bold text-gray-800">The Villages Interactive Map</h1>
+        <p class="text-lg text-gray-600 mt-2">Hover over a region to see it highlighted, and click to open the corresponding link.</p>
+    </div>
+
+    <!-- The main container for the map and its overlays -->
+    <div id="map-container">
+        <!-- Using relative path. Assumes an 'images' subfolder. -->
+        <img id="base-map" src="images/BlankMap.png" alt="Base Map of The Villages">
+        <!-- The interactive sections will be dynamically added here by JavaScript -->
+    </div>
+
+    <!-- Status area for loading feedback -->
+    <div id="status-area" class="mt-4 text-center text-sm text-gray-500"></div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            // --- Configuration for Map Sections ---
+            // **CRITICAL:** The 'src' paths below MUST EXACTLY MATCH your filenames, including capitalization.
+            // Example: 'images/HistoricArea.png' will NOT work if the file is named 'images/historicarea.png'.
+            // Please double-check every single filename.
+            const mapSections = [
+                { id: 'historic', src: 'images/HistoricArea.png', name: 'Historic Area', url: 'https://www.thevillages.com/lifestyle/historic-area' },
+                { id: 'north-of-466', src: 'images/Northof466.png', name: 'North of 466', url: 'https://www.thevillages.com/lifestyle/north-of-466' },
+                { id: 'between-the-6s', src: 'images/Betweenthe6s.png', name: 'Between the 6s', url: 'https://www.thevillages.com/lifestyle/between-the-6s' },
+                { id: 'south-of-466a', src: 'images/Southof466A.png', name: 'South of 466A', url: 'https://www.thevillages.com/lifestyle/south-of-466a' },
+                { id: 'eastport', src: 'images/Eastport.png', name: 'Eastport', url: 'https://www.thevillages.com/lifestyle/eastport' },
+                { id: 'south-of-sr44', src: 'images/SouthofSR44.png', name: 'South of SR 44', url: 'https://www.thevillages.com/lifestyle/south-of-sr44' }
+            ];
+
+            const mapContainer = document.getElementById('map-container');
+            const baseMap = document.getElementById('base-map');
+            const statusArea = document.getElementById('status-area');
+
+            let sectionsLoaded = 0;
+
+            // --- Base Map Loading Status ---
+            statusArea.textContent = 'Loading base map...';
+            baseMap.onload = () => {
+                statusArea.textContent = 'Base map loaded. Loading interactive sections...';
+            };
+            baseMap.onerror = () => {
+                mapContainer.innerHTML = '<p class="text-red-500 font-semibold text-center p-8">Error: Base map "images/BlankMap.png" could not be loaded. Please check the file path and name.</p>';
+            };
+
+            // --- Dynamically Create Map Sections ---
+            for (const section of mapSections) {
+                const img = document.createElement('img');
+                img.src = section.src;
+                img.alt = `Map section for ${section.name}`;
+                img.id = section.id;
+                img.className = 'map-section';
+                
+                img.onload = () => {
+                    sectionsLoaded++;
+                    statusArea.textContent = `Loaded ${sectionsLoaded} of ${mapSections.length} sections.`;
+                    if (sectionsLoaded === mapSections.length) {
+                        setTimeout(() => { statusArea.style.display = 'none'; }, 2000);
+                    }
+                };
+                
+                img.onerror = () => {
+                    console.error(`Failed to load image for section: ${section.name} at ${section.src}`);
+                    statusArea.innerHTML += `<br><span class="text-red-500 font-bold">Failed to load: "${section.src}".</span> Please check the file name and subfolder for exact match (including capitalization).`;
+                };
+
+                // --- Click Event to Open Pre-determined Link ---
+                img.addEventListener('click', () => {
+                    if (section.url) {
+                        window.open(section.url, '_blank');
+                    } else {
+                        console.warn(`No URL defined for section: ${section.name}`);
+                    }
+                });
+
+                mapContainer.appendChild(img);
+            }
+        });
+    </script>
+
+</body>
+</html>
