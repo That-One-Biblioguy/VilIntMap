@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>VilIntMap - Interactive Village Map</title>
+
+    <!-- Tailwind CSS for styling -->
+    <script src="https://cdn.tailwindcss.com"></script>
+
+    <!-- Google Fonts: Inter -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700&display=swap" rel="stylesheet">
+
+    <style>
+        /* Apply the Inter font family */
+        body {
+            font-family: 'Inter', sans-serif;
+        }
+    </style>
+</head>
+<body class="bg-gray-100 dark:bg-gray-900 text-gray-800 dark:text-gray-200 antialiased">
+
+    <!-- Main Container -->
+    <div class="container mx-auto px-4 py-8 md:py-12">
+
+        <!-- Header Section -->
+        <header class="text-center mb-10">
+            <h1 class="text-4xl md:text-5xl font-bold text-gray-900 dark:text-white">
+                Interactive Village Map
+            </h1>
+            <p class="mt-2 text-lg text-gray-600 dark:text-gray-400">
+                An embedded map project by that-one-biblioguy.
+            </p>
+        </header>
+
+        <!-- iFrame Embed Section -->
+        <main>
+            <div class="bg-white dark:bg-gray-800 rounded-xl shadow-2xl overflow-hidden">
+                <div class="p-4 sm:p-6 border-b border-gray-200 dark:border-gray-700">
+                    <h2 class="text-xl font-semibold text-gray-900 dark:text-white">Map View</h2>
+                </div>
+                
+                <!-- 
+                  IMPORTANT: This is where you embed your map.
+                  The src attribute points to your GitHub Pages URL.
+                  If the 404 error persists, you may need to double-check your repository settings.
+                -->
+                <div class="aspect-w-16 aspect-h-9 bg-gray-200 dark:bg-gray-700">
+                     <iframe 
+                        class="w-full h-[600px] md:h-[800px]"
+                        src="https://that-one-biblioguy.github.io/VilIntMap/" 
+                        frameborder="0" 
+                        allowfullscreen>
+                     </iframe>
+                </div>
+            </div>
+        </main>
+
+        <!-- About Section -->
+        <section class="mt-12 text-center max-w-3xl mx-auto">
+            <h3 class="text-2xl font-bold text-gray-900 dark:text-white">About This Project</h3>
+            <p class="mt-4 text-gray-600 dark:text-gray-400">
+                This page serves as a host for the VilIntMap interactive map. The content above is embedded directly from the GitHub repository. You can interact with the map just as you would on its own page.
+            </p>
+        </section>
+
+        <!-- Footer -->
+        <footer class="text-center mt-12 py-6 border-t border-gray-200 dark:border-gray-700">
+            <p class="text-gray-500 dark:text-gray-400">
+                &copy; 2024 Your Name or Project. All Rights Reserved.
+            </p>
+        </footer>
+
+    </div>
+
+</body>
+</html>
