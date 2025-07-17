@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>VilIntMap - Interactive Village Map</title>
+    <title>Interactive Village Map</title>
 
     <!-- Tailwind CSS for styling -->
     <script src="https://cdn.tailwindcss.com"></script>
@@ -43,15 +43,13 @@
                 </div>
                 
                 <!-- 
-                  IMPORTANT: This is where you embed your map.
-                  The src attribute points to your GitHub Pages URL.
-                  If the 404 error persists, you may need to double-check your repository settings.
+                  CORRECTION: The iframe now points to map.html.
+                  Make sure your original map code is in a file named "map.html" in the same repository.
                 -->
-                <div class="aspect-w-16 aspect-h-9 bg-gray-200 dark:bg-gray-700">
+                <div class="bg-gray-200 dark:bg-gray-700">
                      <iframe 
-                        class="w-full h-[600px] md:h-[800px]"
-                        src="https://that-one-biblioguy.github.io/VilIntMap/" 
-                        frameborder="0" 
+                        class="w-full h-[600px] md:h-[800px] border-0"
+                        src="./map.html" 
                         allowfullscreen>
                      </iframe>
                 </div>
